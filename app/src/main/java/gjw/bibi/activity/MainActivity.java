@@ -11,15 +11,19 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -28,7 +32,7 @@ import gjw.bibi.adapter.MainAdapter;
 import gjw.bibi.base.BaseFragment;
 import gjw.bibi.fragment.DiscoverFragment;
 import gjw.bibi.fragment.DynamicStateFragment;
-import gjw.bibi.fragment.FindFragment;
+import gjw.bibi.fragment.RecommendFragment;
 import gjw.bibi.fragment.LiveStreamingFragment;
 import gjw.bibi.fragment.ToThemFragment;
 import gjw.bibi.fragment.ZoneFragment;
@@ -53,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout dlMain;
 
     private List<BaseFragment> fragments;
+    private boolean isDoulbe = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
     private void initListener() {
 
         View leftHeaderView = navigationView.getHeaderView(0);
-        ImageView leftHead= (ImageView) leftHeaderView.findViewById(R.id.iv_left_head);
+        ImageView leftHead = (ImageView) leftHeaderView.findViewById(R.id.iv_left_head);
 
         navigationLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,11 +107,12 @@ public class MainActivity extends AppCompatActivity {
     private void initFragment() {
         fragments = new ArrayList<>();
         fragments.add(new LiveStreamingFragment());
-        fragments.add(new FindFragment());
+        fragments.add(new RecommendFragment());
         fragments.add(new ToThemFragment());
         fragments.add(new ZoneFragment());
         fragments.add(new DynamicStateFragment());
         fragments.add(new DiscoverFragment());
+
     }
 
     private void initData() {
@@ -115,6 +121,32 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(mainAdapter);
         //绑定viewpager
         tablayout.setupWithViewPager(viewPager);
-        tablayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        tablayout.setTabMode(TabLayout.MODE_FIXED);
+    }
+
+    //双击退出
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+
+            Toast.makeText(this, "再点我分手", Toast.LENGTH_SHORT).show();
+
+            if (isDoulbe) {
+                finish();
+            }
+
+            isDoulbe = true;
+            //定时器
+            new Timer().schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    isDoulbe = false;
+                }
+            }, 2000);
+
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
