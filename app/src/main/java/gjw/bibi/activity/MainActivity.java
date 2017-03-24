@@ -1,5 +1,6 @@
 package gjw.bibi.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
     private List<BaseFragment> fragments;
     private boolean isDoulbe = false;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +102,28 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 dlMain.closeDrawer(GravityCompat.START);
+            }
+        });
+
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                int itemId = item.getItemId();
+                switch (itemId) {
+                    case R.id.game_toolbar:
+                        intent = new Intent(MainActivity.this, GameActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.download_toolbar:
+                        intent = new Intent(MainActivity.this, DownloadActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.search_toolbar:
+                        intent = new Intent(MainActivity.this, SearchActivity.class);
+                        startActivity(intent);
+                        break;
+                }
+                return false;
             }
         });
     }

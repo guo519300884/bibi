@@ -1,80 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:zhy="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#11000000"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:scrollbars="none">
 
-
-    <android.support.v4.widget.NestedScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="none">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="#ffffff"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:padding="5dp">
-
-                <TextView
-                    android:id="@+id/tv_search"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="8"
-                    android:drawableLeft="@drawable/ic_hint_search"
-                    android:drawablePadding="7dp"
-                    android:text="搜索"
-                    android:textSize="20sp" />
-
-                <ImageButton
-                    android:id="@+id/ib_scan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_scan" />
-
-            </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="#ffffff"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="5dp">
 
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/tv_search"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="7dp"
-                android:text="大家都在搜"
+                android:layout_weight="8"
+                android:drawableLeft="@drawable/ic_hint_search"
+                android:drawablePadding="7dp"
+                android:text="搜索"
                 android:textSize="20sp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:orientation="vertical">
-
-                <ScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:scrollbars="none">
-
-                    <com.zhy.view.flowlayout.TagFlowLayout
-                        android:id="@+id/id_flowlayout"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        zhy:max_select="-1" />
-                </ScrollView>
-            </LinearLayout>
-
-            <TextView
+            <ImageButton
+                android:id="@+id/ib_scan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="--------------查看更多-----------" />
+                android:background="@color/white"
+                android:src="@drawable/ic_scan" />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="7dp"
+            android:text="大家都在搜"
+            android:textSize="20sp" />
+
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/sl_tag"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:scrollbars="none">
+
+            <com.zhy.view.flowlayout.TagFlowLayout
+                android:id="@+id/id_flowlayout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                zhy:max_select="-1" />
+        </android.support.v4.widget.NestedScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginLeft="30dp"
+                android:layout_weight="4"
+                android:background="#22000000" />
+
+            <TextView
+                android:id="@+id/tv_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="5dp"
+                android:drawableLeft="@drawable/ic_arrow_down_gray_round"
+                android:drawablePadding="3dp"
+                android:text="查看更多" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginRight="30dp"
+                android:layout_weight="4"
+                android:background="#22000000" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
 
             <TextView
                 android:id="@+id/interest"
@@ -124,7 +149,7 @@
                 android:layout_marginTop="2dp"
                 android:drawableLeft="@drawable/ic_btn_shop"
                 android:text="周边商城" />
-
         </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
-</LinearLayout>
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

@@ -6,7 +6,7 @@ import java.util.List;
  * Created by 皇上 on 2017/3/20.
  */
 
-public class RexommendBean {
+public class RecommendBean {
 
     /**
      * code : 0

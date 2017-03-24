@@ -111,7 +111,11 @@
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.TopicActivity" />
-        <activity android:name=".activity.SearchActivity"></activity>
+        <activity android:name=".activity.SearchActivity" />
+        <activity android:name=".activity.GameActivity" />
+        <activity android:name=".activity.DownloadActivity" />
+        <activity android:name=".activity.OriginalActivity" />
+        <activity android:name=".activity.CircumActivity"></activity>
     </application>
 
 </manifest>

@@ -2,9 +2,12 @@ package gjw.bibi.fragment;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
+import android.support.v4.widget.NestedScrollView;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +24,8 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import gjw.bibi.R;
+import gjw.bibi.activity.CircumActivity;
+import gjw.bibi.activity.OriginalActivity;
 import gjw.bibi.activity.SearchActivity;
 import gjw.bibi.activity.TopicActivity;
 import gjw.bibi.base.BaseFragment;
@@ -34,12 +39,17 @@ import okhttp3.Call;
 
 public class DiscoverFragment extends BaseFragment {
 
+
     @InjectView(R.id.tv_search)
     TextView tvSearch;
     @InjectView(R.id.ib_scan)
     ImageButton ibScan;
     @InjectView(R.id.id_flowlayout)
     TagFlowLayout idFlowlayout;
+    @InjectView(R.id.sl_tag)
+    NestedScrollView slTag;
+    @InjectView(R.id.tv_more)
+    TextView tvMore;
     @InjectView(R.id.interest)
     TextView interest;
     @InjectView(R.id.topic)
@@ -57,6 +67,8 @@ public class DiscoverFragment extends BaseFragment {
     private View view;
     private List<TagBean.DataBean.ListBean> tagBeanData;
     private TagAdapter adapter;
+    private boolean isOpen = false;
+    private Intent intent;
 
     @Override
     public View initView() {
@@ -108,22 +120,19 @@ public class DiscoverFragment extends BaseFragment {
                     return view;
                 }
             };
+            if (idFlowlayout != null) {
+                idFlowlayout.setAdapter(adapter);
 
-            idFlowlayout.setAdapter(adapter);
-
-            idFlowlayout.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
-                @Override
-                public boolean onTagClick(View view, int position, FlowLayout parent) {
-                    Toast.makeText(context, "哈哈哈哈", Toast.LENGTH_SHORT).show();
-                    return true;
-                }
-            });
-
+                idFlowlayout.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
+                    @Override
+                    public boolean onTagClick(View view, int position, FlowLayout parent) {
+                        Toast.makeText(context, "哈哈哈哈", Toast.LENGTH_SHORT).show();
+                        return true;
+                    }
+                });
+            }
         }
-
-
     }
-
 
     @Override
     public void onDestroyView() {
@@ -131,34 +140,68 @@ public class DiscoverFragment extends BaseFragment {
         ButterKnife.reset(this);
     }
 
-    @OnClick({R.id.topic, R.id.activity, R.id.original, R.id.area, R.id.gamecenter, R.id.circum, R.id.tv_search, R.id.ib_scan})
+    @OnClick({R.id.topic, R.id.tv_more, R.id.activity, R.id.original, R.id.area, R.id.gamecenter, R.id.circum, R.id.tv_search, R.id.ib_scan})
     public void onClick(View view) {
         switch (view.getId()) {
 
             case R.id.tv_search:
-                Intent sintent = new Intent(context, SearchActivity.class);
-                startActivity(sintent);
+                intent = new Intent(context, SearchActivity.class);
+                startActivity(intent);
                 break;
             case R.id.ib_scan:
-                break;
 
+                break;
             case R.id.topic:
-                Intent intent = new Intent(context, TopicActivity.class);
+                intent = new Intent(context, TopicActivity.class);
                 startActivity(intent);
                 break;
             case R.id.activity:
-                Intent intent1 = new Intent(context, TopicActivity.class);
-                startActivity(intent1);
+                intent = new Intent(context, TopicActivity.class);
+                startActivity(intent);
                 break;
             case R.id.original:
-
+                intent = new Intent(context, OriginalActivity.class);
+                startActivity(intent);
                 break;
             case R.id.area:
+                intent = new Intent(context, OriginalActivity.class);
+                startActivity(intent);
                 break;
             case R.id.gamecenter:
                 break;
             case R.id.circum:
+                intent = new Intent(context, CircumActivity.class);
+                startActivity(intent);
                 break;
+            case R.id.tv_more:
+                more();
+                break;
+        }
+    }
+
+    private void more() {
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) slTag.getLayoutParams();
+
+        if (!isOpen) {
+            params.height = 500;
+            slTag.setLayoutParams(params);
+            tvMore.setText("收起");
+
+            Drawable img = getResources().getDrawable(R.drawable.ic_arrow_up_gray_round);
+            // 调用setCompoundDrawables时，必须调用Drawable.setBounds()方法,否则图片不显示
+            img.setBounds(0, 0, img.getMinimumWidth(), img.getMinimumHeight());
+            tvMore.setCompoundDrawables(img, null, null, null); //设置左图标
+            isOpen = true;
+        } else {
+            params.height = 180;
+            slTag.setLayoutParams(params);
+            tvMore.setText("查看更多");
+
+            Drawable img = getResources().getDrawable(R.drawable.ic_arrow_down_gray_round);
+            // 调用setCompoundDrawables时，必须调用Drawable.setBounds()方法,否则图片不显示
+            img.setBounds(0, 0, img.getMinimumWidth(), img.getMinimumHeight());
+            tvMore.setCompoundDrawables(img, null, null, null); //设置左图标
+            isOpen = false;
         }
     }
 }
