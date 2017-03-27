@@ -1,6 +1,7 @@
 package gjw.bibi.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,17 +19,21 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import gjw.bibi.R;
 import gjw.bibi.bean.LiveStreamingBean;
+import gjw.bibi.videoplayer.DanmkuVideoActivity;
 
 /**
  * Created by 皇上 on 2017/3/22.
  */
 
-class AllareasAdapter extends BaseAdapter {
+public class AllareasAdapter extends BaseAdapter {
 
+    public static final String VIDEO = "video";
+    public static final String VT = "视频标题";
     private final List<LiveStreamingBean.DataBean.PartitionsBean.LivesBean> lives;
     private final Context context;
     private LayoutInflater inflater;
     public int size;
+    private Intent intent;
 
     public AllareasAdapter(Context context, List<LiveStreamingBean.DataBean.PartitionsBean.LivesBean> lives) {
         this.context = context;
@@ -62,7 +67,7 @@ class AllareasAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        LiveStreamingBean.DataBean.PartitionsBean.LivesBean livesBean = lives.get(position);
+        final LiveStreamingBean.DataBean.PartitionsBean.LivesBean livesBean = lives.get(position);
 
         Glide.with(context).load(livesBean.getCover().getSrc()).into(viewHolder.ivAreasContentIcon1);
         viewHolder.tvAreasContentTitle1.setText(livesBean.getTitle());
@@ -72,6 +77,17 @@ class AllareasAdapter extends BaseAdapter {
         viewHolder.itemLiveLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                String playurl = livesBean.getPlayurl();
+                String title = livesBean.getTitle();
+
+                intent = new Intent(context, DanmkuVideoActivity.class);
+                intent.putExtra(VIDEO, playurl);
+                intent.putExtra(VT, title);
+                context.startActivity(intent);
+//                intent = new Intent(context, VideoPlayActivity.class);
+//                context.startActivity(intent);
+
                 Toast.makeText(context, "0000000000000", Toast.LENGTH_SHORT).show();
             }
         });

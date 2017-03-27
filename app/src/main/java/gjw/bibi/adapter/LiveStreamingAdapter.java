@@ -1,6 +1,7 @@
 package gjw.bibi.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,8 +27,16 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import gjw.bibi.R;
+import gjw.bibi.activity.AllClassifyActivity;
+import gjw.bibi.activity.AttentionActivity;
+import gjw.bibi.activity.CircumActivity;
+import gjw.bibi.activity.LoginActivity;
 import gjw.bibi.bean.LiveStreamingBean;
 import gjw.bibi.view.MyGridView;
+
+import static gjw.bibi.activity.MainActivity.isLogin;
+import static gjw.bibi.adapter.TopicAdapter.CIR;
+import static gjw.bibi.adapter.TopicAdapter.CIRCUM;
 
 /**
  * Created by 皇上 on 2017/3/22.
@@ -48,9 +57,11 @@ public class LiveStreamingAdapter extends RecyclerView.Adapter {
 
 
     private final Context context;
-    private final LiveStreamingBean.DataBean liveStreamingBeanData;
+    private LiveStreamingBean.DataBean liveStreamingBeanData;
     private LayoutInflater inflater;
     private AllareasAdapter allareasAdapter;
+    private Intent intent;
+    private LiveStreamingBean.DataBean data;
 
     public LiveStreamingAdapter(Context context, LiveStreamingBean.DataBean liveStreamingBeanData) {
         this.context = context;
@@ -101,6 +112,10 @@ public class LiveStreamingAdapter extends RecyclerView.Adapter {
         }
     }
 
+    public void setData(LiveStreamingBean.DataBean data) {
+        this.liveStreamingBeanData = data;
+    }
+
 
     public class BannerViewHolder extends RecyclerView.ViewHolder {
         private final Context context;
@@ -123,15 +138,14 @@ public class LiveStreamingAdapter extends RecyclerView.Adapter {
             this.context = context;
         }
 
-        public void setData(List<LiveStreamingBean.DataBean.BannerBean> banner) {
+        public void setData(final List<LiveStreamingBean.DataBean.BannerBean> banner) {
             List<String> images = new ArrayList<>();
 
-            if (banner.size() == 1) {
-                for (int i = 0; i < 2; i++) {
-                    images.add(banner.get(0).getImg());
+            if (banner.size() > 0) {
+                for (int i = 0; i < banner.size(); i++) {
+                    images.add(banner.get(i).getImg());
                 }
             }
-
 
             lsBanner.setIndicatorGravity(BannerConfig.RIGHT);
             lsBanner.setDelayTime(4000);
@@ -147,10 +161,16 @@ public class LiveStreamingAdapter extends RecyclerView.Adapter {
             }).start();
 
             lsBanner.setOnBannerListener(new OnBannerListener() {
+
                 @Override
                 public void OnBannerClick(int position) {
-                    Toast.makeText(context, "版纳", Toast.LENGTH_SHORT).show();
 
+                    String title = banner.get(position).getTitle();
+                    String link = banner.get(position).getLink();
+                    intent = new Intent(context, CircumActivity.class);
+                    intent.putExtra(CIR, title);
+                    intent.putExtra(CIRCUM, link);
+                    context.startActivity(intent);
                 }
             });
         }
@@ -159,19 +179,28 @@ public class LiveStreamingAdapter extends RecyclerView.Adapter {
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.attention:
-                    Toast.makeText(context, "22", Toast.LENGTH_SHORT).show();
+                    intent = new Intent(context, AttentionActivity.class);
+                    context.startActivity(intent);
                     break;
                 case R.id.centre:
-                    Toast.makeText(context, "33", Toast.LENGTH_SHORT).show();
+                    if (isLogin) {
+
+                    } else {
+                        intent = new Intent(context, LoginActivity.class);
+                        context.startActivity(intent);
+                    }
                     break;
                 case R.id.smallvideo:
                     Toast.makeText(context, "44", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.seek:
+
                     Toast.makeText(context, "55", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.classify:
                     Toast.makeText(context, "66", Toast.LENGTH_SHORT).show();
+                    intent = new Intent(context, AllClassifyActivity.class);
+                    context.startActivity(intent);
                     break;
             }
         }
@@ -201,7 +230,24 @@ public class LiveStreamingAdapter extends RecyclerView.Adapter {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                    Toast.makeText(context, "点我呀", Toast.LENGTH_SHORT).show();
+                    switch (position) {
+                        case 0:
+                            Toast.makeText(context, "点我呀", Toast.LENGTH_SHORT).show();
+                            break;
+                        case 1:
+                            Toast.makeText(context, "22351", Toast.LENGTH_SHORT).show();
+                            break;
+                        case 2:
+                            Toast.makeText(context, "3513", Toast.LENGTH_SHORT).show();
+                            break;
+                        case 3:
+                            Toast.makeText(context, "68496451", Toast.LENGTH_SHORT).show();
+                            break;
+                        case 4:
+                            Toast.makeText(context, "633351", Toast.LENGTH_SHORT).show();
+                            break;
+                    }
+
                 }
             });
         }
@@ -234,7 +280,9 @@ public class LiveStreamingAdapter extends RecyclerView.Adapter {
 
             Glide.with(context).load(partitions.get(getLayoutPosition() - 2).getPartition().getSub_icon().getSrc()).into(ivAreasIcon);
             tvAreasTitle.setText(partitions.get(getLayoutPosition() - 2).getPartition().getName());
-            tvAreasNumber.setText("当前" + partitions.get(getLayoutPosition() - 2).getPartition().getCount() + "个直播");
+
+            int count = partitions.get(getLayoutPosition() - 2).getPartition().getCount();
+            tvAreasNumber.setText("当前" + count + "个直播");
 
             allareasAdapter = new AllareasAdapter(context, partitions.get(getLayoutPosition() - 2).getLives());
             gvAreasDrawing.setAdapter(allareasAdapter);
@@ -253,6 +301,9 @@ public class LiveStreamingAdapter extends RecyclerView.Adapter {
             gvHead.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
+
+
                     Toast.makeText(context, "ttttttt", Toast.LENGTH_SHORT).show();
                 }
             });

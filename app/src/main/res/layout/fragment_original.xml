@@ -5,10 +5,18 @@
     android:layout_height="match_parent">
 
 
-    <gjw.bibi.view.MyListView
-        android:id="@+id/lv_original"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></gjw.bibi.view.MyListView>
+        android:layout_height="match_parent">
+
+        <gjw.bibi.view.MyListView
+            android:id="@+id/lv_original"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></gjw.bibi.view.MyListView>
+
+        <include layout="@layout/pb" />
+
+    </FrameLayout>
 
 
 </android.support.v4.widget.NestedScrollView>

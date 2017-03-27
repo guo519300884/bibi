@@ -15,11 +15,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.uuzuche.lib_zxing.activity.CaptureActivity;
+import com.uuzuche.lib_zxing.activity.CodeUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,10 +37,14 @@ import gjw.bibi.adapter.MainAdapter;
 import gjw.bibi.base.BaseFragment;
 import gjw.bibi.fragment.DiscoverFragment;
 import gjw.bibi.fragment.DynamicStateFragment;
-import gjw.bibi.fragment.RecommendFragment;
 import gjw.bibi.fragment.LiveStreamingFragment;
+import gjw.bibi.fragment.RecommendFragment;
 import gjw.bibi.fragment.ToThemFragment;
 import gjw.bibi.fragment.ZoneFragment;
+import gjw.bibi.search.IOnSearchClickListener;
+import gjw.bibi.search.SearchFragment;
+
+import static gjw.bibi.utils.MyApplication.context;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -56,19 +64,29 @@ public class MainActivity extends AppCompatActivity {
     NavigationView navigationView;
     @InjectView(R.id.dl_main)
     DrawerLayout dlMain;
+    @InjectView(R.id.ib_back)
+    ImageButton ibBack;
+    @InjectView(R.id.head_title)
+    TextView headTitle;
+    @InjectView(R.id.lv_history)
+    ListView lvHistory;
+    @InjectView(R.id.fm_history)
+    LinearLayout fmHistory;
 
     private List<BaseFragment> fragments;
     private boolean isDoulbe = false;
     private Intent intent;
+    public static boolean isLogin = false;
+    private boolean isDaytime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // 去掉窗口标题
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        // 去掉窗口标题
+//        requestWindowFeature(Window.FEATURE_NO_TITLE);
         // 隐藏顶部的状态栏
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
@@ -84,6 +102,10 @@ public class MainActivity extends AppCompatActivity {
 
         View leftHeaderView = navigationView.getHeaderView(0);
         ImageView leftHead = (ImageView) leftHeaderView.findViewById(R.id.iv_left_head);
+        final ImageView choicemodel = (ImageView) leftHeaderView.findViewById(R.id.choicemodel);
+
+        //默认选中左侧第一条item
+        navigationView.getMenu().getItem(0).setChecked(true);
 
         navigationLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,9 +113,86 @@ public class MainActivity extends AppCompatActivity {
                 dlMain.openDrawer(GravityCompat.START);
             }
         });
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch (item.getItemId()) {
+                    case R.id.left_home:
+                        intent = new Intent(MainActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.left_vip:
+                        intent = new Intent(MainActivity.this, BigVipActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.left_integral:
+                        //判断是否登录过  未登录就跳转登录页面
+                        if (isLogin) {
+                            intent = new Intent(MainActivity.this, IntegralActivity.class);
+                            startActivity(intent);
+                        } else {
+                            intent = new Intent(MainActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                        }
+                        break;
+                    case R.id.left_cache:
+                        intent = new Intent(MainActivity.this, DownloadActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.left_review:
+                        if (isLogin) {
+
+
+                        } else {
+                            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                        }
+                        break;
+                    case R.id.left_collect:
+                        if (isLogin) {
+
+                        } else {
+                            intent = new Intent(MainActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                        }
+                        break;
+                    case R.id.left_history:
+                        clMain.setVisibility(View.GONE);
+                        fmHistory.setVisibility(View.VISIBLE);
+                        break;
+                    case R.id.left_attention:
+                        if (isLogin) {
+
+                        } else {
+                            intent = new Intent(MainActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                        }
+                        break;
+                    case R.id.left_wallet:
+                        if (isLogin) {
+
+                        } else {
+                            intent = new Intent(MainActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                        }
+                        break;
+                    case R.id.left_themeselection:
+                        if (isLogin) {
+
+                        } else {
+                            intent = new Intent(MainActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                        }
+                        break;
+                    case R.id.left_setting:
+                        intent = new Intent(MainActivity.this, SettingActivity.class);
+                        startActivity(intent);
+                        break;
+                }
+
+                dlMain.setClickable(true);
                 dlMain.closeDrawer(GravityCompat.START);
                 return true;
             }
@@ -101,9 +200,29 @@ public class MainActivity extends AppCompatActivity {
         leftHead.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (isLogin) {
+
+                } else {
+                    intent = new Intent(MainActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
                 dlMain.closeDrawer(GravityCompat.START);
             }
         });
+
+        choicemodel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isDaytime) {
+                    choicemodel.setImageResource(R.drawable.ic_switch_daily);
+                    isDaytime = false;
+                } else {
+                    choicemodel.setImageResource(R.drawable.ic_switch_night);
+                    isDaytime = true;
+                }
+            }
+        });
+
 
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -119,8 +238,29 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.search_toolbar:
-                        intent = new Intent(MainActivity.this, SearchActivity.class);
-                        startActivity(intent);
+                        // 搜索
+                        //第一句 , 实例化:
+                        SearchFragment searchFragment = SearchFragment.newInstance();
+                        //第二句 , 设置回调:
+                        searchFragment.setOnSearchClickListener(new IOnSearchClickListener() {
+                            @Override
+                            public void OnSearchClick(String keyword) {
+                                //这里处理逻辑
+                                Toast.makeText(MainActivity.this, keyword, Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void OnScanClick() {
+                                //扫描二维码
+                                intent = new Intent(MainActivity.this, CaptureActivity.class);
+                                startActivityForResult(intent, 3);
+                            }
+
+                        });
+                        //第三句, 显示搜索框:
+                        searchFragment.show(getSupportFragmentManager(), SearchFragment.TAG);
+//                        intent = new Intent(MainActivity.this, SearchActivity.class);
+//                        startActivity(intent);
                         break;
                 }
                 return false;
@@ -173,4 +313,30 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
+
+
+    /**
+     * 处理二维码扫描结果
+     */
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 3) {
+            //处理扫描结果（在界面上显示）
+            if (null != data) {
+                Bundle bundle = data.getExtras();
+                if (bundle == null) {
+                    return;
+                }
+                if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
+                    String result = bundle.getString(CodeUtils.RESULT_STRING);
+                    Toast.makeText(context, "解析结果:" + result, Toast.LENGTH_LONG).show();
+                } else if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_FAILED) {
+                    Toast.makeText(context, "解析二维码失败", Toast.LENGTH_LONG).show();
+                }
+            }
+        }
+    }
+
+
 }

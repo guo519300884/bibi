@@ -1,5 +1,7 @@
 package gjw.bibi.fragment;
 
+import android.graphics.Color;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -28,6 +30,9 @@ public class RecommendFragment extends BaseFragment {
     public View view;
     @InjectView(R.id.rv_recommend)
     RecyclerView rvRecommend;
+    @InjectView(R.id.swipe_refresh_recommed)
+    SwipeRefreshLayout swipeRefreshRecommed;
+
     private RecommendAdapter recommendAdapter;
 
     @Override
@@ -39,7 +44,33 @@ public class RecommendFragment extends BaseFragment {
 
     @Override
     protected void initData() {
+
+        recommendAdapter = new RecommendAdapter(context);
+        rvRecommend.setAdapter(recommendAdapter);
+        //设置布局管理器
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(context, 1);
+        rvRecommend.setLayoutManager(gridLayoutManager);
+
+        intitReview();
+
         getDataFromNet();
+    }
+
+    private void intitReview() {
+        //下拉多少像素出效果
+        swipeRefreshRecommed.setDistanceToTriggerSync(100);
+        //设置背景颜色
+        swipeRefreshRecommed.setProgressBackgroundColorSchemeResource(android.R.color.white);
+        //设置圈圈颜色
+        swipeRefreshRecommed.setColorSchemeColors(Color.parseColor("#88FB7299"));
+        swipeRefreshRecommed.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Toast.makeText(context, "干嘛", Toast.LENGTH_SHORT).show();
+                getDataFromNet();
+            }
+        });
+
     }
 
     private void getDataFromNet() {
@@ -55,21 +86,26 @@ public class RecommendFragment extends BaseFragment {
             @Override
             public void onResponse(String response, int id) {
                 processData(response);
+                swipeRefreshRecommed.setRefreshing(false);
             }
         });
-
     }
 
     private void processData(String response) {
+
         RecommendBean recommendBean = JSON.parseObject(response, RecommendBean.class);
         List<RecommendBean.DataBean> recommendBeanData = recommendBean.getData();
 
-        //設置適配器
-        recommendAdapter = new RecommendAdapter(context, recommendBeanData);
-        rvRecommend.setAdapter(recommendAdapter);
-        //设置布局管理器
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(context, 1);
-        rvRecommend.setLayoutManager(gridLayoutManager);
+        if (recommendBeanData != null && recommendBeanData.size() > 0) {
+
+            if (recommendAdapter != null) {
+                //設置適配器
+                recommendAdapter.setDate(recommendBeanData);
+                recommendAdapter.notifyDataSetChanged();
+//                recommendAdapter = new RecommendAdapter(context, recommendBeanData);
+
+            }
+        }
     }
 
     @Override

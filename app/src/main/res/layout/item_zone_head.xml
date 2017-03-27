@@ -4,6 +4,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/item_recommend" />
+    <gjw.bibi.view.MyGridView
+        android:id="@+id/gv_zone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="4"></gjw.bibi.view.MyGridView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/black_alpha_60" />
 
 </LinearLayout>

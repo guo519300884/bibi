@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorWhite">#FFF</color>
+    <color name="divider">#e6e6e6</color>
+    <color name="text_black">#737373</color>
+    <color name="text_grey">#9DA0A3</color>
+    <color name="transparent">#0000</color>
+    <!--<string name="app_name">SearchBox</string>-->
+    <style name="DialogEmptyAnimation" parent="android:Animation">
+        <item name="@android:windowEnterAnimation">@null</item>
+        <item name="@android:windowExitAnimation">@null</item>
+    </style>
+    <style name="DialogStyle" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/transparent</item>
+    </style>
+</resources>

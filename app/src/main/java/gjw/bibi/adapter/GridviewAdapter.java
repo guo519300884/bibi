@@ -35,7 +35,7 @@ class GridviewAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return recommendBeanData.size();
+        return recommendBeanData == null ? 0 : recommendBeanData.size();
     }
 
     @Override
@@ -59,7 +59,7 @@ class GridviewAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        RecommendBean.DataBean dataBean = recommendBeanData.get(position);
+        final RecommendBean.DataBean dataBean = recommendBeanData.get(position);
 
         Glide.with(context).load(dataBean.getCover()).into(viewHolder.ivAreasContentIcon1);
 
@@ -87,6 +87,27 @@ class GridviewAdapter extends BaseAdapter {
         viewHolder.tvAreasContentWatch1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+//                new AlertDialog.Builder(context)
+//                        .setView()
+//                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//
+//
+//
+//
+//                            }
+//                        })
+//                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//
+//                            }
+//                        })
+//                        .show();
+
+
                 Toast.makeText(context, "dddddd", Toast.LENGTH_SHORT).show();
             }
         });
@@ -94,6 +115,7 @@ class GridviewAdapter extends BaseAdapter {
         viewHolder.itemLiveLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Toast.makeText(context, "KKKKKKKK", Toast.LENGTH_SHORT).show();
             }
         });

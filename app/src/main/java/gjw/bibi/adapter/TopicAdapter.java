@@ -1,10 +1,12 @@
 package gjw.bibi.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -14,6 +16,7 @@ import java.util.List;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import gjw.bibi.R;
+import gjw.bibi.activity.CircumActivity;
 import gjw.bibi.bean.TopicBean;
 
 /**
@@ -21,6 +24,8 @@ import gjw.bibi.bean.TopicBean;
  */
 
 public class TopicAdapter extends BaseAdapter {
+    public static final String CIRCUM = "666";
+    public static final String CIR = "000";
     private final Context context;
     private final List<TopicBean.ListBean> topicBeanList;
 
@@ -45,7 +50,7 @@ public class TopicAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
         if (convertView == null) {
             convertView = View.inflate(context, R.layout.item_topic, null);
@@ -55,12 +60,27 @@ public class TopicAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        TopicBean.ListBean listBean = topicBeanList.get(position);
+        final TopicBean.ListBean listBean = topicBeanList.get(position);
 
 
         Glide.with(context).load(listBean.getCover()).into(viewHolder.ivTopic);
 
         viewHolder.tvTopic.setText(listBean.getTitle());
+
+        viewHolder.topicWeb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String title = listBean.getTitle();
+                String link = listBean.getLink();
+
+                Intent intent = new Intent(context, CircumActivity.class);
+                intent.putExtra(CIR, title);
+                intent.putExtra(CIRCUM, link);
+                context.startActivity(intent);
+            }
+        });
+
 
         return convertView;
     }
@@ -70,6 +90,8 @@ public class TopicAdapter extends BaseAdapter {
         ImageView ivTopic;
         @InjectView(R.id.tv_topic)
         TextView tvTopic;
+        @InjectView(R.id.topic_web)
+        LinearLayout topicWeb;
 
         ViewHolder(View view) {
             ButterKnife.inject(this, view);

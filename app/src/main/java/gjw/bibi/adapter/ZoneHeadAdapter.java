@@ -5,7 +5,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -49,7 +51,7 @@ public class ZoneHeadAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
         if (convertView == null) {
-            convertView = View.inflate(context, R.layout.item_zone_head, null);
+            convertView = View.inflate(context, R.layout.item_zone_head_item, null);
             viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
         } else {
@@ -61,6 +63,13 @@ public class ZoneHeadAdapter extends BaseAdapter {
         Glide.with(context).load(dataBean.getLogo()).into(viewHolder.ivRecommend);
         viewHolder.tvRecommend.setText(dataBean.getName());
 
+        viewHolder.zoneTitleClassify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "3563513154365", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         return convertView;
     }
 
@@ -69,6 +78,8 @@ public class ZoneHeadAdapter extends BaseAdapter {
         ImageView ivRecommend;
         @InjectView(R.id.tv_recommend)
         TextView tvRecommend;
+        @InjectView(R.id.zone_title_classify)
+        LinearLayout zoneTitleClassify;
 
         ViewHolder(View view) {
             ButterKnife.inject(this, view);

@@ -11,6 +11,8 @@ import butterknife.InjectView;
 import butterknife.OnClick;
 import gjw.bibi.R;
 
+import static gjw.bibi.fragment.DiscoverFragment.SEARCH;
+
 public class SearchActivity extends AppCompatActivity {
 
     @InjectView(R.id.ib_search_back)
@@ -27,6 +29,22 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         ButterKnife.inject(this);
+
+        initData();
+        initListener();
+
+    }
+
+    private void initListener() {
+
+    }
+
+    private void initData() {
+
+        String keyword = getIntent().getStringExtra(SEARCH);
+
+        etSearchEdt.setText(keyword);
+
     }
 
     @OnClick({R.id.ib_search_back, R.id.ib_search_scan, R.id.et_search_edt, R.id.ib_search_search})

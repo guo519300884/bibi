@@ -25,20 +25,20 @@ import gjw.bibi.utils.TimeUtils;
 
 public class ToThemAdapter extends BaseAdapter {
     private final Context context;
-    private final List<ToThemBean.ResultBean.PreviousBean.ListBean> previousBean;
+    private List<ToThemBean.ResultBean.PreviousBean.ListBean> previousBean;
 
     private int w;
     private int q;
 
-    public ToThemAdapter(Context context, List<ToThemBean.ResultBean.PreviousBean.ListBean> previousBean) {
+
+    public ToThemAdapter(Context context) {
         this.context = context;
-        this.previousBean = previousBean;
     }
 
 
     @Override
     public int getCount() {
-        return previousBean.size();
+        return previousBean == null ? 0 : previousBean.size();
     }
 
     @Override
@@ -82,6 +82,10 @@ public class ToThemAdapter extends BaseAdapter {
         });
 
         return convertView;
+    }
+
+    public void setDateDrama(List<ToThemBean.ResultBean.PreviousBean.ListBean> previousBean) {
+        this.previousBean = previousBean;
     }
 
     static class ViewHolder {

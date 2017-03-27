@@ -1,10 +1,13 @@
 package gjw.bibi.fragment;
 
+import android.graphics.Color;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageButton;
+import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
@@ -13,7 +16,6 @@ import com.zhy.http.okhttp.callback.StringCallback;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import butterknife.OnClick;
 import gjw.bibi.R;
 import gjw.bibi.adapter.LiveStreamingAdapter;
 import gjw.bibi.base.BaseFragment;
@@ -29,8 +31,12 @@ public class LiveStreamingFragment extends BaseFragment {
 
     @InjectView(R.id.rv_livestreaming)
     RecyclerView rvLivestreaming;
-    @InjectView(R.id.ib_shoot)
-    ImageButton ibShoot;
+    @InjectView(R.id.btn_more)
+    Button btnMore;
+    @InjectView(R.id.rl_live)
+    RelativeLayout rlLive;
+    @InjectView(R.id.swipe_refresh_live)
+    SwipeRefreshLayout swipeRefreshLive;
     private View view;
     private LiveStreamingBean liveStreamingBean;
     private LiveStreamingBean.DataBean liveStreamingBeanData;
@@ -54,8 +60,25 @@ public class LiveStreamingFragment extends BaseFragment {
         rvLivestreaming.setHasFixedSize(true);
         rvLivestreaming.setNestedScrollingEnabled(false);
 
+        initialView();
         getDataFromNet();
 
+    }
+
+    private void initialView() {
+        //下拉多少像素出效果
+        swipeRefreshLive.setDistanceToTriggerSync(100);
+        //设置背景颜色
+        swipeRefreshLive.setProgressBackgroundColorSchemeResource(android.R.color.white);
+        //设置圈圈颜色
+        swipeRefreshLive.setColorSchemeColors(Color.parseColor("#88FB7299"));
+        swipeRefreshLive.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Toast.makeText(context, "干嘛", Toast.LENGTH_SHORT).show();
+                getDataFromNet();
+            }
+        });
     }
 
     private void getDataFromNet() {
@@ -71,6 +94,7 @@ public class LiveStreamingFragment extends BaseFragment {
             @Override
             public void onResponse(String response, int id) {
                 processData(response);
+                swipeRefreshLive.setRefreshing(false);
             }
         });
     }
@@ -79,16 +103,23 @@ public class LiveStreamingFragment extends BaseFragment {
         liveStreamingBean = JSON.parseObject(response, LiveStreamingBean.class);
         liveStreamingBeanData = liveStreamingBean.getData();
 
-        //设置适配器
-        liveStreamingAdapter = new LiveStreamingAdapter(context, liveStreamingBeanData);
-        rvLivestreaming.setAdapter(liveStreamingAdapter);
-        //设置布局管理器
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(context, 1);
-        rvLivestreaming.setLayoutManager(gridLayoutManager);
+        if (liveStreamingBeanData != null) {
 
-//        rvLivestreaming.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
-
-
+            btnMore.setVisibility(View.VISIBLE);
+            if (liveStreamingAdapter == null) {
+                //设置适配器
+                liveStreamingAdapter = new LiveStreamingAdapter(context, liveStreamingBeanData);
+                rvLivestreaming.setAdapter(liveStreamingAdapter);
+                //设置布局管理器
+                GridLayoutManager gridLayoutManager = new GridLayoutManager(context, 1);
+                rvLivestreaming.setLayoutManager(gridLayoutManager);
+            } else {
+                liveStreamingAdapter.setData(liveStreamingBeanData);
+                liveStreamingAdapter.notifyDataSetChanged();
+            }
+        } else {
+            rlLive.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -97,9 +128,4 @@ public class LiveStreamingFragment extends BaseFragment {
         ButterKnife.reset(this);
     }
 
-    @OnClick(R.id.ib_shoot)
-    public void onClick() {
-        //跳转到登录
-
-    }
 }

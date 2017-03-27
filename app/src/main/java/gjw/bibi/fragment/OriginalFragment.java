@@ -2,6 +2,7 @@ package gjw.bibi.fragment;
 
 import android.view.View;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
@@ -28,6 +29,9 @@ public class OriginalFragment extends BaseFragment {
 
     @InjectView(R.id.lv_original)
     ListView lvOriginal;
+    @InjectView(R.id.pb)
+    ProgressBar pb;
+
     private View view;
 
     @Override
@@ -60,11 +64,19 @@ public class OriginalFragment extends BaseFragment {
     }
 
     private void processData(String response) {
+
         OriginalBean originalBean = JSON.parseObject(response, OriginalBean.class);
         List<OriginalBean.DataBean> originalBeanData = originalBean.getData();
 
-        LVOriginalAdapter lvOriginalAdapter = new LVOriginalAdapter(context, originalBeanData);
-        lvOriginal.setAdapter(lvOriginalAdapter);
+        if (originalBeanData != null && originalBeanData.size() > 0) {
+
+            pb.setVisibility(View.GONE);
+
+            LVOriginalAdapter lvOriginalAdapter = new LVOriginalAdapter(context, originalBeanData);
+            lvOriginal.setAdapter(lvOriginalAdapter);
+        }else {
+            pb.setVisibility(View.VISIBLE);
+        }
     }
 
 
@@ -73,4 +85,5 @@ public class OriginalFragment extends BaseFragment {
         super.onDestroyView();
         ButterKnife.reset(this);
     }
+
 }

@@ -1,10 +1,9 @@
 package gjw.bibi.fragment;
 
-import android.graphics.Color;
-import android.view.Gravity;
 import android.view.View;
-import android.widget.TextView;
 
+import butterknife.ButterKnife;
+import gjw.bibi.R;
 import gjw.bibi.base.BaseFragment;
 
 /**
@@ -12,20 +11,24 @@ import gjw.bibi.base.BaseFragment;
  */
 
 public class DynamicStateFragment extends BaseFragment {
-    private TextView textView;
+
+    private View view;
 
     @Override
     public View initView() {
-        textView = new TextView(context);
-        textView.setTextColor(Color.RED);
-        textView.setGravity(Gravity.CENTER);
-        textView.setTextSize(30);
-
-        return textView;
+        view = View.inflate(context, R.layout.fragment_dynamicstate, null);
+        ButterKnife.inject(this, view);
+        return view;
     }
 
     @Override
     protected void initData() {
-        textView.setText("33333333");
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.reset(this);
+    }
+
 }

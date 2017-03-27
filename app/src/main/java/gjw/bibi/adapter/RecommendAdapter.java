@@ -22,25 +22,26 @@ public class RecommendAdapter extends RecyclerView.Adapter {
 
     //GridView
     private static final int GRIDVIEW = 1;
-    //
-
     //当前类型
     private static int currentType = 1;
 
 
     private final Context context;
-    private final List<RecommendBean.DataBean> recommendBeanData;
     private LayoutInflater inflater;
+    private List<RecommendBean.DataBean> recommendBeanData;
 
-    public RecommendAdapter(Context context, List<RecommendBean.DataBean> recommendBeanData) {
+    public void setDate(List<RecommendBean.DataBean> data) {
+        this.recommendBeanData = data;
+    }
+
+    public RecommendAdapter(Context context) {
         this.context = context;
-        this.recommendBeanData = recommendBeanData;
         inflater = LayoutInflater.from(context);
     }
 
     @Override
     public int getItemCount() {
-        return 1;
+        return recommendBeanData == null ? 0 : recommendBeanData.size();
     }
 
     @Override
@@ -48,7 +49,6 @@ public class RecommendAdapter extends RecyclerView.Adapter {
         if (position == GRIDVIEW) {
             currentType = GRIDVIEW;
         }
-
         return currentType;
     }
 
@@ -71,16 +71,6 @@ public class RecommendAdapter extends RecyclerView.Adapter {
     static class GridviewViewHolder extends RecyclerView.ViewHolder {
 
         private final Context context;
-//        @InjectView(R.id.iv_areas_content_icon1)
-//        ImageView ivAreasContentIcon1;
-//        @InjectView(R.id.tv_areas_content_title1)
-//        TextView tvAreasContentTitle1;
-//        @InjectView(R.id.tv_areas_content_name1)
-//        TextView tvAreasContentName1;
-//        @InjectView(R.id.tv_areas_content_watch1)
-//        TextView tvAreasContentWatch1;
-//        @InjectView(R.id.item_live_layout)
-//        CardView itemLiveLayout;
 
         @InjectView(R.id.gv_recommend_gridview)
         MyGridView gvRecommendGridview;
@@ -92,18 +82,6 @@ public class RecommendAdapter extends RecyclerView.Adapter {
         }
 
         public void setData(List<RecommendBean.DataBean> recommendBeanData) {
-
-//            Glide.with(context).load(recommendBeanData.get(getLayoutPosition()).getCover()).into(ivAreasContentIcon1);
-//            tvAreasContentTitle1.setText(recommendBeanData.get(getLayoutPosition()).getTitle());
-//            tvAreasContentName1.setText(recommendBeanData.get(getLayoutPosition()).getName());
-//
-//            tvAreasContentWatch1.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    Toast.makeText(context, "dddddddd", Toast.LENGTH_SHORT).show();
-//                }
-//            });
-
 
             GridviewAdapter gridviewAdapter = new GridviewAdapter(context, recommendBeanData);
             gvRecommendGridview.setAdapter(gridviewAdapter);

@@ -7,39 +7,43 @@
     android:orientation="vertical"
     tools:context="gjw.bibi.activity.CircumActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+    <include layout="@layout/layout_toolbar" />
 
-        <ImageButton
-            android:id="@+id/ib_circum_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            android:padding="10dp"
-            android:src="@drawable/ic_back_home" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="10dp"
-            android:text="bibi - 周边商城"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:background="@color/colorPrimary"-->
+    <!--android:gravity="center_vertical"-->
+    <!--android:orientation="horizontal">-->
 
-        <ImageButton
-            android:id="@+id/ib_circum_more"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            android:padding="10dp"
-            android:src="@drawable/ic_menu_moreoverflow" />
+    <!--<ImageButton-->
+    <!--android:id="@+id/ib_circum_back"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:background="@color/colorPrimary"-->
+    <!--android:padding="10dp"-->
+    <!--android:src="@drawable/ic_back_home" />-->
 
-    </LinearLayout>
+    <!--<TextView-->
+    <!--android:id="@+id/tv_title_web"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_weight="1"-->
+    <!--android:padding="10dp"-->
+    <!--android:text="bibi - 周边商城"-->
+    <!--android:textColor="@color/white"-->
+    <!--android:textSize="20sp" />-->
+
+    <!--<ImageButton-->
+    <!--android:id="@+id/ib_circum_more"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:background="@color/colorPrimary"-->
+    <!--android:padding="10dp"-->
+    <!--android:src="@drawable/ic_menu_moreoverflow" />-->
+
+    <!--</LinearLayout>-->
 
     <WebView
         android:id="@+id/wv_circum"

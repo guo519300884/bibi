@@ -8,6 +8,7 @@
     android:scrollbars="none">
 
     <LinearLayout
+        android:id="@+id/ll_discover"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -79,10 +80,10 @@
                 android:id="@+id/tv_more"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="5dp"
                 android:drawableLeft="@drawable/ic_arrow_down_gray_round"
                 android:drawablePadding="3dp"
+                android:gravity="center"
+                android:padding="5dp"
                 android:text="查看更多" />
 
             <TextView
@@ -150,6 +151,5 @@
                 android:drawableLeft="@drawable/ic_btn_shop"
                 android:text="周边商城" />
         </LinearLayout>
-
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

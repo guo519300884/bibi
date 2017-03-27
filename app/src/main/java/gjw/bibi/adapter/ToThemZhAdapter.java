@@ -26,18 +26,17 @@ import gjw.bibi.bean.ToThemBean;
 public class ToThemZhAdapter extends BaseAdapter {
 
     private final Context context;
-    private final List<ToThemBean.ResultBean.SerializingBean> serializingBeen;
+    private List<ToThemBean.ResultBean.SerializingBean> serializingBeen;
     private int w;
     private int q;
 
-    public ToThemZhAdapter(Context context, List<ToThemBean.ResultBean.SerializingBean> serializingBeen) {
+    public ToThemZhAdapter(Context context) {
         this.context = context;
-        this.serializingBeen = serializingBeen;
     }
 
     @Override
     public int getCount() {
-        return serializingBeen.size();
+        return serializingBeen == null ? 0 : serializingBeen.size();
     }
 
     @Override
@@ -82,11 +81,17 @@ public class ToThemZhAdapter extends BaseAdapter {
         viewHolder.itemLiveLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Toast.makeText(context, "漫画", Toast.LENGTH_SHORT).show();
             }
         });
 
         return convertView;
+    }
+
+    public void setDateCartoon(List<ToThemBean.ResultBean.SerializingBean> serializingBeen) {
+        this.serializingBeen = serializingBeen;
+
     }
 
     static class ViewHolder {
