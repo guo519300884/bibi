@@ -1,7 +1,6 @@
 package gjw.bibi.view;
 
 import android.content.Context;
-import android.support.v7.widget.GridLayoutManager;
 import android.util.AttributeSet;
 import android.widget.GridView;
 
@@ -10,8 +9,6 @@ import android.widget.GridView;
  */
 
 public class MyGridView extends GridView {
-
-    private GridLayoutManager layoutManager;
 
     public MyGridView(Context context, AttributeSet attrs) {
         super(context, attrs);

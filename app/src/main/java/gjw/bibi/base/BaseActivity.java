@@ -18,6 +18,13 @@ public abstract class BaseActivity extends AppCompatActivity {
         setContentView(getLayoutId());
         ButterKnife.inject(this);
 
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
         initData();
         initListener();
     }

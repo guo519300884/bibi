@@ -77,7 +77,7 @@ public class DiscoverFragment extends BaseFragment {
     private TagAdapter adapter;
     private boolean isOpen = false;
     private Intent intent;
-    private String keyword;
+    private String keyw;
 
     @Override
     public View initView() {
@@ -133,10 +133,10 @@ public class DiscoverFragment extends BaseFragment {
                         @Override
                         public boolean onTagClick(View view, int position, FlowLayout parent) {
 
-                            keyword = tagBeanData.get(position).getKeyword();
+                            keyw = tagBeanData.get(position).getKeyword();
 
                             intent = new Intent(context, SearchActivity.class);
-                            intent.putExtra(SEARCH, keyword);
+                            intent.putExtra(SEARCH, keyw);
                             startActivity(intent);
 
                             Toast.makeText(context, "哈哈哈哈", Toast.LENGTH_SHORT).show();
@@ -170,6 +170,10 @@ public class DiscoverFragment extends BaseFragment {
                 searchFragment.setOnSearchClickListener(new IOnSearchClickListener() {
                     @Override
                     public void OnSearchClick(String keyword) {
+
+                        intent = new Intent(context, SearchActivity.class);
+                        intent.putExtra(SEARCH, keyword);
+                        startActivity(intent);
                         //这里处理逻辑
                         Toast.makeText(context, keyword, Toast.LENGTH_SHORT).show();
                     }
@@ -179,15 +183,10 @@ public class DiscoverFragment extends BaseFragment {
                         //扫描二维码
                         intent = new Intent(context, CaptureActivity.class);
                         startActivityForResult(intent, 3);
-
                     }
-
                 });
                 //第三句, 显示搜索框:
                 searchFragment.show(getFragmentManager(), SearchFragment.TAG);
-
-//                intent = new Intent(context, SearchActivity.class);
-//                startActivity(intent);
                 break;
             case R.id.ib_scan:
 

@@ -38,7 +38,7 @@ public class SearchFragment extends DialogFragment implements DialogInterface.On
     private EditText etSearchKeyword;
     private ImageView ivSearchSearch;
     private RecyclerView rvSearchHistory;
-    private View searchUnderline;
+//    private View searchUnderline;
     private TextView tvSearchClean;
     private View viewSearchOutside;
     private ImageView iv_search_scan;
@@ -88,7 +88,7 @@ public class SearchFragment extends DialogFragment implements DialogInterface.On
         etSearchKeyword = (EditText) view.findViewById(R.id.et_search_keyword);
         ivSearchSearch = (ImageView) view.findViewById(R.id.iv_search_search);
         rvSearchHistory = (RecyclerView) view.findViewById(R.id.rv_search_history);
-        searchUnderline = (View) view.findViewById(R.id.search_underline);
+//        searchUnderline = (View) view.findViewById(R.id.search_underline);
         tvSearchClean = (TextView) view.findViewById(R.id.tv_search_clean);
         viewSearchOutside = (View) view.findViewById(R.id.view_search_outside);
         iv_search_scan = (ImageView) view.findViewById(R.id.iv_search_scan);
@@ -136,7 +136,8 @@ public class SearchFragment extends DialogFragment implements DialogInterface.On
         } else if (view.getId() == R.id.tv_search_clean) {
             searchHistoryDB.deleteAllHistory();
             historys.clear();
-            searchUnderline.setVisibility(View.GONE);
+//            searchUnderline.setVisibility(View.GONE);
+            llsearchhistory.setVisibility(View.GONE);
             searchHistoryAdapter.notifyDataSetChanged();
         } else if (view.getId() == R.id.iv_search_scan) {
             //二维码点击的事件
@@ -219,6 +220,9 @@ public class SearchFragment extends DialogFragment implements DialogInterface.On
             if (TextUtils.isEmpty(keyword.trim())) {
                 setAllHistorys();
                 searchHistoryAdapter.notifyDataSetChanged();
+
+
+
             } else {
                 setKeyWordHistorys(editable.toString());
             }
@@ -285,6 +289,10 @@ public class SearchFragment extends DialogFragment implements DialogInterface.On
                 historys.add(string);
             }
         }
+
+
+
+
         searchHistoryAdapter.notifyDataSetChanged();
         checkHistorySize();
     }

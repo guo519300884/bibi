@@ -51,7 +51,6 @@ public class OriginalActivity extends AppCompatActivity {
 
         initFragment();
         initData();
-//        initListener();
 
     }
 

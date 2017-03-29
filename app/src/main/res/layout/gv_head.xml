@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/gv_head"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/gv_head"
     android:orientation="vertical">
 
     <LinearLayout
@@ -13,8 +13,8 @@
 
         <ImageView
             android:id="@+id/iv_areas_icon"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_margin="7dp"
             android:src="@drawable/ic_file_download_black_24dp" />
 
