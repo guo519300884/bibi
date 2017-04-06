@@ -155,11 +155,11 @@
                     android:textSize="20sp" />
             </LinearLayout>
 
-            <gjw.bibi.view.MyGridView
+            <gjw.bibi.view.myview.MyGridView
                 android:id="@+id/gv_tothem"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:numColumns="3"></gjw.bibi.view.MyGridView>
+                android:numColumns="3"></gjw.bibi.view.myview.MyGridView>
 
             <LinearLayout
                 android:id="@+id/thediffuse_title"
@@ -191,11 +191,11 @@
                     android:textSize="20sp" />
             </LinearLayout>
 
-            <gjw.bibi.view.MyGridView
+            <gjw.bibi.view.myview.MyGridView
                 android:id="@+id/gv_zh_tothem"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:numColumns="3"></gjw.bibi.view.MyGridView>
+                android:numColumns="3"></gjw.bibi.view.myview.MyGridView>
 
 
         </LinearLayout>

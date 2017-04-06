@@ -58,7 +58,7 @@
                     android:textColor="#f00"
                     android:textSize="10sp" />
 
-                <gjw.bibi.view.AddSubView
+                <gjw.bibi.view.myview.AddSubView
                     android:id="@+id/addSubView"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"

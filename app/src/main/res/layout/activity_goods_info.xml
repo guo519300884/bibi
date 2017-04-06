@@ -53,7 +53,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <gjw.bibi.view.ScrollViewContainer
+            <gjw.bibi.view.myview.ScrollViewContainer
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -202,7 +202,7 @@
 
                 </ScrollView>
 
-            </gjw.bibi.view.ScrollViewContainer>
+            </gjw.bibi.view.myview.ScrollViewContainer>
         </LinearLayout>
 
         <LinearLayout

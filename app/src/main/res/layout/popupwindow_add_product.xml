@@ -85,7 +85,7 @@
             android:layout_gravity="center"
             android:text="数量" />
 
-        <gjw.bibi.view.AddSubView
+        <gjw.bibi.view.myview.AddSubView
             android:id="@+id/nas_goodinfo_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/dl_edit"
+        android:icon="@drawable/ic_download_edit"
+        android:title="编辑"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/dl_setting"
+        android:icon="@drawable/ic_download_setting"
+        android:title="设置"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/dl_search"
+        android:icon="@drawable/ic_download_search"
+        android:title="搜索"
+        app:showAsAction="always" />
+</menu>

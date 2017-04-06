@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_sr_item"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cv_sr_srcv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_weight="3"
+        android:clickable="true"
+        android:scaleType="fitXY"
+        android:foreground="?attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/card_view_background"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="@dimen/card_elevation">
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_sr_tp"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_tips_error_not_foud" />
+
+            <TextView
+                android:id="@+id/tv_sr_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/iv_sr_tp"
+                android:layout_alignRight="@id/iv_sr_tp"
+                android:layout_margin="3dp"
+                android:background="@color/black_alpha_60"
+                android:padding="3dp"
+                android:text="363545"
+                android:textColor="@color/white" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="4"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/tv_sr_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lines="2"
+            android:text="6621656565656565656565656535111111"
+            android:textColor="@color/black_80"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_sr_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_clip_danmaku_num"
+            android:drawablePadding="3dp"
+            android:gravity="center_vertical"
+            android:text="35131"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_sr_paly"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/ic_clip_danmaku_num"
+                android:gravity="center_vertical"
+                android:text="5461"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_sr_dm"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/ic_clip_danmaku_num"
+                android:gravity="center_vertical"
+                android:text="5461"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

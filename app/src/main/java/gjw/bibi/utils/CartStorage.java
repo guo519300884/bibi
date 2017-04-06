@@ -2,7 +2,7 @@ package gjw.bibi.utils;
 
 import android.content.Context;
 
-import gjw.bibi.database.GoodsDAO;
+import gjw.bibi.model.database.GoodsDAO;
 
 /**
  * Created by 皇上 on 2017/3/28.

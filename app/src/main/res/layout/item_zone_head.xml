@@ -4,11 +4,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <gjw.bibi.view.MyGridView
+    <gjw.bibi.view.myview.MyGridView
         android:id="@+id/gv_zone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:numColumns="4"></gjw.bibi.view.MyGridView>
+        android:numColumns="4"></gjw.bibi.view.myview.MyGridView>
 
     <TextView
         android:layout_width="match_parent"

@@ -38,11 +38,11 @@
 
     </LinearLayout>
 
-    <gjw.bibi.view.MyGridView
+    <gjw.bibi.view.myview.MyGridView
         android:id="@+id/gv_zone_region"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:numColumns="2"></gjw.bibi.view.MyGridView>
+        android:numColumns="2"></gjw.bibi.view.myview.MyGridView>
 
 
     <LinearLayout

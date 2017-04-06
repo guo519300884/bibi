@@ -4,10 +4,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <gjw.bibi.view.MyGridView
-        android:id="@+id/gv_shopcar"
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:numColumns="2"></gjw.bibi.view.MyGridView>
+        android:layout_height="match_parent">
+
+        <gjw.bibi.view.myview.MyGridView
+            android:id="@+id/gv_shopcar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:numColumns="2"></gjw.bibi.view.myview.MyGridView>
+
+    </android.support.v4.widget.NestedScrollView>
+
 
 </LinearLayout>

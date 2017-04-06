@@ -68,12 +68,12 @@
         </LinearLayout>
     </android.support.v7.widget.CardView>-->
 
-    <gjw.bibi.view.MyGridView
+    <gjw.bibi.view.myview.MyGridView
         android:id="@+id/gv_recommend_gridview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:numColumns="2">
 
-    </gjw.bibi.view.MyGridView>
+    </gjw.bibi.view.myview.MyGridView>
 
 </LinearLayout>

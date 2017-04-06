@@ -3,7 +3,7 @@ package gjw.bibi.utils.pay;
 import android.content.Context;
 import android.view.View;
 
-import gjw.bibi.utils.MyApplication;
+import gjw.bibi.app.MyApplication;
 
 /**
  * Created by 张永卫on 2017/3/11.

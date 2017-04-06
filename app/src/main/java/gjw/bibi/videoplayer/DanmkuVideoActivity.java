@@ -19,8 +19,8 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import gjw.bibi.R;
 
-import static gjw.bibi.adapter.AllareasAdapter.VIDEO;
-import static gjw.bibi.adapter.AllareasAdapter.VT;
+import static gjw.bibi.presenter.adapter.AllareasAdapter.VIDEO;
+import static gjw.bibi.presenter.adapter.AllareasAdapter.VT;
 
 /**
  * Created by 皇上 on 2017/3/26.

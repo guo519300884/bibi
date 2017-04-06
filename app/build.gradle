@@ -36,7 +36,7 @@ android {
 
 greendao {
     schemaVersion 1
-    daoPackage 'gjw.bibi.gen'
+    daoPackage 'gjw.bibi.model.gen'
     targetGenDir 'src/main/java'
 }
 
@@ -67,6 +67,10 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile files('libs/alipaySdk-20160516.jar')
 
+    compile 'com.squareup.retrofit2:retrofit:2.2.0'
+
     compile 'cn.jiguang.sdk:jpush:3.0.3'  // 此处以JPush 3.0.3 版本为例。
     compile 'cn.jiguang.sdk:jcore:1.1.1'  // 此处以JCore 1.1.1 版本为例。
+
+
 }

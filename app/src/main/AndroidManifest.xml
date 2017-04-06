@@ -117,14 +117,14 @@
 
 
     <application
-        android:name=".utils.MyApplication"
+        android:name=".app.MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/mm"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.WelcomeActivity">
+        <activity android:name=".view.activity.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -132,30 +132,30 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".view.activity.MainActivity"
             android:configChanges="keyboard|screenSize|orientation"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.TopicActivity" />
-        <activity android:name=".activity.SearchActivity" />
+        <activity android:name=".view.activity.SearchActivity" />
         <activity android:name=".activity.GameActivity" />
-        <activity android:name=".activity.DownloadActivity" />
-        <activity android:name=".activity.OriginalActivity" />
+        <activity android:name=".view.activity.DownloadActivity" />
+        <activity android:name=".view.activity.OriginalActivity" />
         <activity android:name=".activity.CircumActivity" />
         <activity android:name=".activity.AttentionActivity" />
         <activity android:name=".activity.AllClassifyActivity" />
-        <activity android:name=".activity.LoginActivity" />
-        <activity android:name=".activity.ResetActivity" />
-        <activity android:name=".activity.RegisterActivity" />
-        <activity android:name=".activity.SettingActivity" />
-        <activity android:name=".activity.IntegralActivity" />
-        <activity android:name=".activity.BigVipActivity" />
+        <activity android:name=".view.activity.LoginActivity" />
+        <activity android:name=".view.activity.ResetActivity" />
+        <activity android:name=".view.activity.RegisterActivity" />
+        <activity android:name=".view.activity.SettingActivity" />
+        <activity android:name=".view.activity.IntegralActivity" />
+        <activity android:name=".view.activity.BigVipActivity" />
         <activity android:name=".activity.VideoPlayActivity" />
         <activity
             android:name=".videoplayer.DanmkuVideoActivity"
             android:configChanges="screenSize|keyboardHidden|orientation" />
         <activity android:name=".activity.GoodsInfoActivity" />
-        <activity android:name=".activity.CartActivity"></activity>
+        <activity android:name=".view.activity.CartActivity"></activity>
 
 
         <!-- alipay sdk begin -->
