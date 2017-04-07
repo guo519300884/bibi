@@ -9,7 +9,7 @@
         android:id="@+id/item_live_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="@dimen/card_margin"
+        android:layout_margin="5dp"
         android:layout_weight="1"
         android:clickable="true"
         android:foreground="?attr/selectableItemBackground"
@@ -19,7 +19,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="220dp"
+            android:layout_height="250dp"
             android:orientation="vertical">
 
             <RelativeLayout
@@ -29,8 +29,8 @@
                 <ImageView
                     android:id="@+id/iv_areas_content_icon1"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/live_item_image_height"
-                    android:scaleType="center"
+                    android:layout_height="160dp"
+                    android:scaleType="fitXY"
                     android:src="@drawable/ic_people_black_24dp" />
 
                 <TextView
@@ -50,10 +50,9 @@
                 android:id="@+id/tv_areas_content_title1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/default_tiny_margin"
                 android:ellipsize="end"
                 android:maxLines="2"
-                android:padding="7dp"
+                android:padding="3dp"
                 android:text="6666666666666666666 566565555555555555"
                 android:textColor="@color/black_80"
                 android:textSize="20sp" />
@@ -64,7 +63,7 @@
                 android:layout_weight="1"
                 android:gravity="bottom"
                 android:orientation="horizontal"
-                android:padding="5dp">
+                android:padding="3dp">
 
                 <TextView
                     android:id="@+id/tv_areas_content_name1"

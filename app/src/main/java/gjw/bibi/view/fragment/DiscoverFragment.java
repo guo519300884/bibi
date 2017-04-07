@@ -6,6 +6,8 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.v4.widget.NestedScrollView;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -15,15 +17,12 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.uuzuche.lib_zxing.activity.CaptureActivity;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
-import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;
 
 import java.util.List;
 
-import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import gjw.bibi.R;
@@ -35,15 +34,14 @@ import gjw.bibi.search.SearchFragment;
 import gjw.bibi.utils.AppNetConfig;
 import gjw.bibi.view.activity.OriginalActivity;
 import gjw.bibi.view.activity.SearchActivity;
-import gjw.bibi.view.base.BaseFragment;
-import okhttp3.Call;
+import gjw.bibi.view.base.BaseFragment01;
 
 
 /**
  * Created by 皇上 on 2017/3/21.
  */
 
-public class DiscoverFragment extends BaseFragment {
+public class DiscoverFragment extends BaseFragment01 {
 
     public static final String CIRCUN = "666";
     public static final String SEARCH = "搜索";
@@ -73,49 +71,37 @@ public class DiscoverFragment extends BaseFragment {
     TextView circum;
     @InjectView(R.id.ll_discover)
     LinearLayout llDiscover;
-    private View view;
-    private List<TagBean.DataBean.ListBean> tagBeanData;
+
     private TagAdapter adapter;
     private boolean isOpen = false;
     private Intent intent;
     private String keyw;
+    private List<TagBean.DataBean.ListBean> tagBeanDataList;
 
     @Override
-    public View initView() {
-        view = View.inflate(context, R.layout.fragment_discover, null);
-        ButterKnife.inject(this, view);
-        return view;
+    protected int setLayoutId() {
+        return R.layout.fragment_discover;
     }
 
     @Override
-    protected void initData() {
-        getDataFromNet();
+    protected void initData(String json, String error) {
+        if (TextUtils.isEmpty(json)) {
+            Log.e("TAG", "DiscoverFragment initData()" + error);
+        } else {
+            TagBean tagBean = JSON.parseObject(json, TagBean.class);
+            int code = tagBean.getCode();
+            if (code == 0) {
+                tagBeanDataList = tagBean.getData().getList();
+                setAdapter(tagBeanDataList);
+            }
+        }
+
+
     }
 
-    private void getDataFromNet() {
-        OkHttpUtils.get()
-                .id(100)
-                .url(AppNetConfig.TAG)
-                .build().execute(new StringCallback() {
-            @Override
-            public void onError(Call call, Exception e, int id) {
-                Toast.makeText(context, "联网失败咯", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onResponse(String response, int id) {
-                processData(response);
-
-            }
-        });
-    }
-
-    private void processData(String response) {
-        TagBean tagBean = JSON.parseObject(response, TagBean.class);
-        tagBeanData = tagBean.getData().getList();
-
-        if (tagBeanData != null && tagBeanData.size() > 0) {
-            adapter = new TagAdapter(tagBeanData) {
+    private void setAdapter(final List<TagBean.DataBean.ListBean> tagBeanDataList) {
+        if (adapter == null) {
+            adapter = new TagAdapter(tagBeanDataList) {
 
                 @Override
                 public View getView(FlowLayout parent, int position, Object o) {
@@ -125,7 +111,7 @@ public class DiscoverFragment extends BaseFragment {
 
                     GradientDrawable gradientDrawable = (GradientDrawable) textView.getBackground();
 
-                    textView.setText(tagBeanData.get(position).getKeyword());
+                    textView.setText(tagBeanDataList.get(position).getKeyword());
                     textView.setTextColor(Color.GRAY);
                     gradientDrawable.setColor(Color.WHITE);
 
@@ -134,7 +120,7 @@ public class DiscoverFragment extends BaseFragment {
                         @Override
                         public boolean onTagClick(View view, int position, FlowLayout parent) {
 
-                            keyw = tagBeanData.get(position).getKeyword();
+                            keyw = tagBeanDataList.get(position).getKeyword();
 
                             intent = new Intent(context, SearchActivity.class);
                             intent.putExtra(SEARCH, keyw);
@@ -150,14 +136,102 @@ public class DiscoverFragment extends BaseFragment {
             if (idFlowlayout != null) {
                 idFlowlayout.setAdapter(adapter);
             }
+        } else {
+            adapter.notifyDataChanged();
         }
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.reset(this);
+    protected void initView() {
+
     }
+
+    @Override
+    protected void initListener() {
+
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public String setUrl() {
+        return AppNetConfig.TAG;
+    }
+
+//    @Override
+//    protected void initData() {
+//        getDataFromNet();
+//    }
+//
+//    private void getDataFromNet() {
+//        OkHttpUtils.get()
+//                .id(100)
+//                .url(AppNetConfig.TAG)
+//                .build().execute(new StringCallback() {
+//            @Override
+//            public void onError(Call call, Exception e, int id) {
+//                Toast.makeText(context, "联网失败咯", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onResponse(String response, int id) {
+//                processData(response);
+//
+//            }
+//        });
+//    }
+
+//    private void processData(String response) {
+//        TagBean tagBean = JSON.parseObject(response, TagBean.class);
+//        tagBeanData = tagBean.getData().getList();
+//
+//        if (tagBeanData != null && tagBeanData.size() > 0) {
+//            adapter = new TagAdapter(tagBeanData) {
+//
+//                @Override
+//                public View getView(FlowLayout parent, int position, Object o) {
+//
+//                    View view = View.inflate(context, R.layout.item_tag_gridview, null);
+//                    TextView textView = (TextView) view.findViewById(R.id.tv_tag);
+//
+//                    GradientDrawable gradientDrawable = (GradientDrawable) textView.getBackground();
+//
+//                    textView.setText(tagBeanData.get(position).getKeyword());
+//                    textView.setTextColor(Color.GRAY);
+//                    gradientDrawable.setColor(Color.WHITE);
+//
+//
+//                    idFlowlayout.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
+//                        @Override
+//                        public boolean onTagClick(View view, int position, FlowLayout parent) {
+//
+//                            keyw = tagBeanData.get(position).getKeyword();
+//
+//                            intent = new Intent(context, SearchActivity.class);
+//                            intent.putExtra(SEARCH, keyw);
+//                            startActivity(intent);
+//
+//                            Toast.makeText(context, "哈哈哈哈", Toast.LENGTH_SHORT).show();
+//                            return true;
+//                        }
+//                    });
+//                    return view;
+//                }
+//            };
+//            if (idFlowlayout != null) {
+//                idFlowlayout.setAdapter(adapter);
+//            }
+//        }
+//    }
+
 
     @OnClick({R.id.topic, R.id.tv_more, R.id.activity, R.id.original, R.id.area, R.id.gamecenter, R.id.circum, R.id.tv_search, R.id.ib_scan})
     public void onClick(View view) {

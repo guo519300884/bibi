@@ -1,4 +1,4 @@
-package gjw.bibi.adapter;
+package gjw.bibi.presenter.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.CardView;
@@ -27,12 +27,9 @@ public class ToThemAdapter extends BaseAdapter {
     private final Context context;
     private List<ToThemBean.ResultBean.PreviousBean.ListBean> previousBean;
 
-    private int w;
-    private int q;
-
-
-    public ToThemAdapter(Context context) {
+    public ToThemAdapter(Context context, List<ToThemBean.ResultBean.PreviousBean.ListBean> listBeen) {
         this.context = context;
+        this.previousBean = listBeen;
     }
 
 

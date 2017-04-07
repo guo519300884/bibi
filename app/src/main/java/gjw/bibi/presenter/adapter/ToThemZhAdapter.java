@@ -1,4 +1,4 @@
-package gjw.bibi.adapter;
+package gjw.bibi.presenter.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.CardView;
@@ -30,8 +30,9 @@ public class ToThemZhAdapter extends BaseAdapter {
     private int w;
     private int q;
 
-    public ToThemZhAdapter(Context context) {
+    public ToThemZhAdapter(Context context, List<ToThemBean.ResultBean.SerializingBean> serializingBeen) {
         this.context = context;
+        this.serializingBeen = serializingBeen;
     }
 
     @Override
@@ -51,13 +52,13 @@ public class ToThemZhAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ToThemAdapter.ViewHolder viewHolder;
+        ViewHolder viewHolder;
         if (convertView == null) {
             convertView = View.inflate(context, R.layout.item_tothem_content, null);
-            viewHolder = new ToThemAdapter.ViewHolder(convertView);
+            viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
         } else {
-            viewHolder = (ToThemAdapter.ViewHolder) convertView.getTag();
+            viewHolder = (ViewHolder) convertView.getTag();
         }
 
         ToThemBean.ResultBean.SerializingBean serializingBean = serializingBeen.get(position);

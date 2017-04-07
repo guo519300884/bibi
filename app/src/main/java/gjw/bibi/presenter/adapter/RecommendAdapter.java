@@ -1,4 +1,4 @@
-package gjw.bibi.adapter;
+package gjw.bibi.presenter.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -25,17 +25,17 @@ public class RecommendAdapter extends RecyclerView.Adapter {
     //当前类型
     private static int currentType = 1;
 
-
     private final Context context;
     private LayoutInflater inflater;
     private List<RecommendBean.DataBean> recommendBeanData;
 
-    public void setDate(List<RecommendBean.DataBean> data) {
-        this.recommendBeanData = data;
-    }
+//    public void setDate(List<RecommendBean.DataBean> data) {
+//        this.recommendBeanData = data;
+//    }
 
-    public RecommendAdapter(Context context) {
+    public RecommendAdapter(Context context, List<RecommendBean.DataBean> recommendBeanData) {
         this.context = context;
+        this.recommendBeanData = recommendBeanData;
         inflater = LayoutInflater.from(context);
     }
 
@@ -74,6 +74,7 @@ public class RecommendAdapter extends RecyclerView.Adapter {
 
         @InjectView(R.id.gv_recommend_gridview)
         MyGridView gvRecommendGridview;
+        private GridviewAdapter gridviewAdapter;
 
         public GridviewViewHolder(Context context, View view) {
             super(view);
@@ -83,7 +84,7 @@ public class RecommendAdapter extends RecyclerView.Adapter {
 
         public void setData(List<RecommendBean.DataBean> recommendBeanData) {
 
-            GridviewAdapter gridviewAdapter = new GridviewAdapter(context, recommendBeanData);
+            gridviewAdapter = new GridviewAdapter(context, recommendBeanData);
             gvRecommendGridview.setAdapter(gridviewAdapter);
 
         }

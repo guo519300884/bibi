@@ -1,4 +1,4 @@
-package gjw.bibi.adapter;
+package gjw.bibi.presenter.adapter;
 
 
 import android.content.Context;
@@ -30,6 +30,7 @@ import butterknife.OnClick;
 import gjw.bibi.R;
 import gjw.bibi.activity.CircumActivity;
 import gjw.bibi.activity.TopicActivity;
+import gjw.bibi.adapter.ZoneHeadAdapter;
 import gjw.bibi.bean.ZoneHeadBean;
 import gjw.bibi.bean.ZoneTypeBean;
 import gjw.bibi.view.myview.MyGridView;
@@ -57,6 +58,8 @@ public class ZoneTypeAdapter extends RecyclerView.Adapter {
     private LayoutInflater inflater;
     private ZoneTypeBean.DataBean dataBean;
     private Intent intent;
+    private ActivityAdapter activityAdapter;
+    private ZoneRegionAdapter zoneRegionAdapter;
 
 
     public ZoneTypeAdapter(Context context, List<ZoneHeadBean.DataBean> zoneHeadBeanData, List<ZoneTypeBean.DataBean> zoneTypeBeanData) {
@@ -170,7 +173,7 @@ public class ZoneTypeAdapter extends RecyclerView.Adapter {
 
             tvAreasTitle.setText(dataBean.getTitle());
 
-            ZoneRegionAdapter zoneRegionAdapter = new ZoneRegionAdapter(context, dataBean);
+            zoneRegionAdapter = new ZoneRegionAdapter(context, dataBean);
             gvZoneRegion.setAdapter(zoneRegionAdapter);
 
             String btn = dataBean.getTitle();
@@ -324,7 +327,7 @@ public class ZoneTypeAdapter extends RecyclerView.Adapter {
         }
 
         public void setData(ZoneTypeBean.DataBean dataBean) {
-            ActivityAdapter activityAdapter = new ActivityAdapter(context, dataBean);
+            activityAdapter = new ActivityAdapter(context, dataBean);
             rvZoneActivity.setAdapter(activityAdapter);
 
             rvZoneActivity.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));

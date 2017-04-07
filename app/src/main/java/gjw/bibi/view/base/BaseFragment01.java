@@ -71,11 +71,13 @@ public abstract class BaseFragment01 extends Fragment implements IGetNetView {
         getNetPresenter.getDataFromNet(url, listener);
     }
 
+
     protected abstract void initData(String json, String error);
+
+    protected abstract void initView();
 
     protected abstract void initListener();
 
-    protected abstract void initView();
 
     @Override
     public void onSuccess(String json) {
@@ -106,5 +108,6 @@ public abstract class BaseFragment01 extends Fragment implements IGetNetView {
         super.onDestroyView();
         isShow = false;
         getNetPresenter.cancelCall();
+        ButterKnife.reset(this);
     }
 }

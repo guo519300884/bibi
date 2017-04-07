@@ -12,7 +12,7 @@ import android.view.ViewGroup;
  * Created by 皇上 on 2017/3/20.
  */
 
-public abstract class BaseFragment extends Fragment{
+public abstract class BaseFragment extends Fragment {
     public Context context;
 
     @Override

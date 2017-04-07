@@ -33,13 +33,17 @@ import java.util.TimerTask;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import gjw.bibi.R;
-import gjw.bibi.activity.GameActivity;
 import gjw.bibi.presenter.adapter.MainAdapter;
 import gjw.bibi.search.IOnSearchClickListener;
 import gjw.bibi.search.SearchFragment;
 import gjw.bibi.utils.CacheUtils;
 import gjw.bibi.view.base.BaseFragment01;
+import gjw.bibi.view.fragment.DiscoverFragment;
+import gjw.bibi.view.fragment.DynamicStateFragment;
 import gjw.bibi.view.fragment.LiveStreamingFragment;
+import gjw.bibi.view.fragment.RecommendFragment;
+import gjw.bibi.view.fragment.ToThemFragment;
+import gjw.bibi.view.fragment.ZoneFragment;
 import gjw.bibi.view.myview.CircleImageView;
 
 import static gjw.bibi.app.MyApplication.context;
@@ -290,11 +294,11 @@ public class MainActivity extends AppCompatActivity {
     private void initFragment() {
         fragments = new ArrayList<>();
         fragments.add(new LiveStreamingFragment());
-//        fragments.add(new RecommendFragment());
-//        fragments.add(new ToThemFragment());
-//        fragments.add(new ZoneFragment());
-//        fragments.add(new DynamicStateFragment());
-//        fragments.add(new DiscoverFragment());
+        fragments.add(new RecommendFragment());
+        fragments.add(new ToThemFragment());
+        fragments.add(new ZoneFragment());
+        fragments.add(new DynamicStateFragment());
+        fragments.add(new DiscoverFragment());
 
     }
 
