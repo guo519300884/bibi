@@ -8,7 +8,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RelativeLayout;
 
 import com.alibaba.fastjson.JSON;
 
@@ -29,8 +28,8 @@ public class LiveStreamingFragment extends BaseFragment01 {
     public RecyclerView rvLivestreaming;
     @InjectView(R.id.btn_more)
     Button btnMore;
-    @InjectView(R.id.rl_live)
-    RelativeLayout rlLive;
+//    @InjectView(R.id.rl_live)
+//    RelativeLayout rlLive;
     @InjectView(R.id.swipe_refresh_live)
     SwipeRefreshLayout swipeRefreshLive;
 

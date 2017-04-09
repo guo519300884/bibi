@@ -1,4 +1,4 @@
-package gjw.bibi.fragment;
+package gjw.bibi.view.fragment;
 
 import android.util.Log;
 import android.view.View;

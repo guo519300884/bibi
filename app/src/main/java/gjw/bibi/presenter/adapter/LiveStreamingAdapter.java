@@ -27,15 +27,15 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import gjw.bibi.R;
-import gjw.bibi.activity.AttentionActivity;
-import gjw.bibi.activity.CircumActivity;
 import gjw.bibi.bean.LiveStreamingBean;
 import gjw.bibi.view.activity.AllClassifyActivity;
+import gjw.bibi.view.activity.AttentionActivity;
+import gjw.bibi.view.activity.CircumActivity;
 import gjw.bibi.view.activity.LoginActivity;
 import gjw.bibi.view.myview.MyGridView;
 
-import static gjw.bibi.adapter.TopicAdapter.CIR;
-import static gjw.bibi.adapter.TopicAdapter.CIRCUM;
+import static gjw.bibi.presenter.adapter.TopicAdapter.CIR;
+import static gjw.bibi.presenter.adapter.TopicAdapter.CIRCUM;
 import static gjw.bibi.view.activity.MainActivity.isLogin;
 
 /**

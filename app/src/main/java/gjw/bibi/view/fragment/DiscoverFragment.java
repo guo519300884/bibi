@@ -26,14 +26,14 @@ import java.util.List;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import gjw.bibi.R;
-import gjw.bibi.activity.CircumActivity;
-import gjw.bibi.activity.TopicActivity;
 import gjw.bibi.bean.TagBean;
 import gjw.bibi.search.IOnSearchClickListener;
 import gjw.bibi.search.SearchFragment;
 import gjw.bibi.utils.AppNetConfig;
+import gjw.bibi.view.activity.CircumActivity;
 import gjw.bibi.view.activity.OriginalActivity;
 import gjw.bibi.view.activity.SearchActivity;
+import gjw.bibi.view.activity.TopicActivity;
 import gjw.bibi.view.base.BaseFragment01;
 
 

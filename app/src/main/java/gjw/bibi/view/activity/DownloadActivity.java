@@ -18,12 +18,12 @@ import java.util.List;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import gjw.bibi.R;
-import gjw.bibi.adapter.DLAdapter;
-import gjw.bibi.fragment.CacheResultsFragment;
+import gjw.bibi.presenter.adapter.DLAdapter;
 import gjw.bibi.search.IOnSearchClickListener;
 import gjw.bibi.search.SearchFragment;
 import gjw.bibi.view.base.BaseActivity;
 import gjw.bibi.view.base.BaseFragment;
+import gjw.bibi.view.fragment.CacheResultsFragment;
 import gjw.bibi.view.fragment.IsCacheFragment;
 
 import static gjw.bibi.view.fragment.DiscoverFragment.SEARCH;

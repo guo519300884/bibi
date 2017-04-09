@@ -16,7 +16,7 @@ import java.util.List;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import gjw.bibi.R;
-import gjw.bibi.adapter.CartAdapter;
+import gjw.bibi.presenter.adapter.CartAdapter;
 import gjw.bibi.model.database.GoodsDAO;
 import gjw.bibi.model.database.GoodsMiddleBean;
 import gjw.bibi.utils.pay.AliPayUtils;

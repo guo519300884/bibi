@@ -1,17 +1,15 @@
 package gjw.bibi.view.activity;
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import gjw.bibi.R;
+import gjw.bibi.view.base.BaseActivity;
 
-public class AllClassifyActivity extends AppCompatActivity {
+public class AllClassifyActivity extends BaseActivity {
 
     @InjectView(R.id.ib_back)
     ImageButton ibBack;
@@ -19,10 +17,18 @@ public class AllClassifyActivity extends AppCompatActivity {
     TextView headTitle;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_all_classify);
-        ButterKnife.inject(this);
+    protected void initListener() {
+
+    }
+
+    @Override
+    protected void initData() {
+
+    }
+
+    @Override
+    public int getLayoutId() {
+        return R.layout.activity_all_classify;
     }
 
     @OnClick({R.id.ib_back, R.id.head_title})

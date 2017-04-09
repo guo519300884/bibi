@@ -1,4 +1,4 @@
-package gjw.bibi.adapter;
+package gjw.bibi.presenter.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -17,7 +17,7 @@ import gjw.bibi.view.base.BaseFragment;
 public class DLAdapter extends FragmentPagerAdapter {
 
     private final List<BaseFragment> fms;
-    private String[] titles = {"已下载","下载中"};
+    private String[] titles = {"已下载", "下载中"};
 
     public DLAdapter(android.support.v4.app.FragmentManager supportFragmentManager, List<BaseFragment> fms) {
         super(supportFragmentManager);

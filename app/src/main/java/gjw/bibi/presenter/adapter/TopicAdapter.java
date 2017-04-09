@@ -1,4 +1,4 @@
-package gjw.bibi.adapter;
+package gjw.bibi.presenter.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,8 +16,8 @@ import java.util.List;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import gjw.bibi.R;
-import gjw.bibi.activity.CircumActivity;
 import gjw.bibi.bean.TopicBean;
+import gjw.bibi.view.activity.CircumActivity;
 
 /**
  * Created by 皇上 on 2017/3/21.

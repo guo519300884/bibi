@@ -115,6 +115,26 @@
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.GET_TASKS" />
 
+    <!--百度地图权限-->
+    <!-- 这个权限用于进行网络定位-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <!-- 这个权限用于访问GPS定位-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <!-- 获取运营商信息，用于支持提供运营商信息相关的接口-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <!-- 用于读取手机当前的状态-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <!-- 写入扩展存储，向扩展卡写入数据，用于写入离线定位数据-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!-- 访问网络，网络定位需要上网-->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- SD卡读取权限，用户写入离线定位数据-->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+
 
     <application
         android:name=".app.MyApplication"
@@ -122,9 +142,17 @@
         android:icon="@drawable/mm"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.activity.WelcomeActivity">
+
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="VZKb5b5RD6qLqGoPVnGnYqv3II06ewGF" />
+
+        <activity
+            android:name=".view.activity.WelcomeActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -135,27 +163,63 @@
             android:name=".view.activity.MainActivity"
             android:configChanges="keyboard|screenSize|orientation"
             android:label="@string/title_activity_main"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.TopicActivity" />
-        <activity android:name=".view.activity.SearchActivity" />
-        <activity android:name=".activity.GameActivity" />
-        <activity android:name=".view.activity.DownloadActivity" />
-        <activity android:name=".view.activity.OriginalActivity" />
-        <activity android:name=".activity.CircumActivity" />
-        <activity android:name=".activity.AttentionActivity" />
-        <activity android:name=".activity.AllClassifyActivity" />
-        <activity android:name=".view.activity.LoginActivity" />
-        <activity android:name=".view.activity.ResetActivity" />
-        <activity android:name=".view.activity.RegisterActivity" />
-        <activity android:name=".view.activity.SettingActivity" />
-        <activity android:name=".view.activity.IntegralActivity" />
-        <activity android:name=".view.activity.BigVipActivity" />
-        <activity android:name=".activity.VideoPlayActivity" />
+        <activity
+            android:name=".view.activity.TopicActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.SearchActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.GameActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.DownloadActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.OriginalActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.CircumActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.AttentionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.AllClassifyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.ResetActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.RegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.SettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.IntegralActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.BigVipActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.VideoPlayActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".videoplayer.DanmkuVideoActivity"
-            android:configChanges="screenSize|keyboardHidden|orientation" />
-        <activity android:name=".activity.GoodsInfoActivity" />
-        <activity android:name=".view.activity.CartActivity"></activity>
+            android:configChanges="screenSize|keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.GoodsInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.CartActivity"
+            android:screenOrientation="portrait" />
 
 
         <!-- alipay sdk begin -->

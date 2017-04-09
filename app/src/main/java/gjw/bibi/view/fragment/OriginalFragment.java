@@ -14,7 +14,7 @@ import java.util.List;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import gjw.bibi.R;
-import gjw.bibi.adapter.LVOriginalAdapter;
+import gjw.bibi.presenter.adapter.LVOriginalAdapter;
 import gjw.bibi.bean.OriginalBean;
 import gjw.bibi.utils.AppNetConfig;
 import gjw.bibi.view.base.BaseFragment;

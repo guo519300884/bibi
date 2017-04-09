@@ -1,5 +1,6 @@
 package gjw.bibi.view.fragment;
 
+
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -11,8 +12,8 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import gjw.bibi.R;
 import gjw.bibi.adapter.SearchResultAdapter;
-import gjw.bibi.view. base.BaseFragment;
 import gjw.bibi.bean.TagSearchBean;
+import gjw.bibi.view.base.BaseFragment;
 import gjw.bibi.view.myview.MyGridView;
 
 /**

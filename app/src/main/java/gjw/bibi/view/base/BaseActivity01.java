@@ -1,10 +1,13 @@
 package gjw.bibi.view.base;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+
+import com.baidu.mapapi.SDKInitializer;
 
 import butterknife.ButterKnife;
 import gjw.bibi.presenter.GetNetPresenter;
@@ -23,6 +26,13 @@ public abstract class BaseActivity01 extends AppCompatActivity implements IGetNe
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //在使用SDK各组件之前初始化context信息，传入ApplicationContext
+        //注意该方法要再setContentView方法之前实现
+        SDKInitializer.initialize(getApplicationContext());
+        //默认竖屏
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         setContentView(getLayoutId());
         ButterKnife.inject(this);
 

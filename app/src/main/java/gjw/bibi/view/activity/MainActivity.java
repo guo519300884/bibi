@@ -1,6 +1,7 @@
 package gjw.bibi.view.activity;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
@@ -97,6 +98,8 @@ public class MainActivity extends AppCompatActivity {
 //        requestWindowFeature(Window.FEATURE_NO_TITLE);
         // 隐藏顶部的状态栏
 //        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        //默认竖屏
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
@@ -353,6 +356,10 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
                     String result = bundle.getString(CodeUtils.RESULT_STRING);
+
+
+
+
                     Toast.makeText(context, "解析结果:" + result, Toast.LENGTH_LONG).show();
                 } else if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_FAILED) {
                     Toast.makeText(context, "解析二维码失败", Toast.LENGTH_LONG).show();

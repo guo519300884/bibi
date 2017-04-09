@@ -28,15 +28,15 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import gjw.bibi.R;
-import gjw.bibi.activity.CircumActivity;
-import gjw.bibi.activity.TopicActivity;
 import gjw.bibi.adapter.ZoneHeadAdapter;
 import gjw.bibi.bean.ZoneHeadBean;
 import gjw.bibi.bean.ZoneTypeBean;
+import gjw.bibi.view.activity.CircumActivity;
+import gjw.bibi.view.activity.TopicActivity;
 import gjw.bibi.view.myview.MyGridView;
 
-import static gjw.bibi.adapter.TopicAdapter.CIR;
-import static gjw.bibi.adapter.TopicAdapter.CIRCUM;
+import static gjw.bibi.presenter.adapter.TopicAdapter.CIR;
+import static gjw.bibi.presenter.adapter.TopicAdapter.CIRCUM;
 
 /**
  * Created by 皇上 on 2017/3/23.

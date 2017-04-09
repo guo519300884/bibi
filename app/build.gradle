@@ -47,7 +47,9 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     //    compile 'com.jakewharton:butterknife-parent:7.0.1'
+
     //    compile 'com.wenwenwen888:searchbox:1.0.0'
+
     //    compile 'org.greenrobot:greendao:3.2.0'
     compile 'com.android.support:appcompat-v7:25.3.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.1'
@@ -67,11 +69,16 @@ dependencies {
     compile 'org.greenrobot:greendao-generator:3.0.0'
     testCompile 'junit:junit:4.12'
     compile files('libs/alipaySdk-20160516.jar')
-
     compile 'com.squareup.retrofit2:retrofit:2.2.0'
-
-    compile 'cn.jiguang.sdk:jpush:3.0.3'  // 此处以JPush 3.0.3 版本为例。
-    compile 'cn.jiguang.sdk:jcore:1.1.1'  // 此处以JCore 1.1.1 版本为例。
-
-
+    compile 'cn.jiguang.sdk:jpush:3.0.3'
+    // 此处以JPush 3.0.3 版本为例。
+    compile 'cn.jiguang.sdk:jcore:1.1.1'
+    // 此处以JCore 1.1.1 版本为例。
+    compile files('libs/baidumapapi_base_v4_2_1.jar')
+    compile files('libs/baidumapapi_cloud_v4_2_1.jar')
+    compile files('libs/baidumapapi_map_v4_2_1.jar')
+    compile files('libs/baidumapapi_radar_v4_2_1.jar')
+    compile files('libs/baidumapapi_search_v4_2_1.jar')
+    compile files('libs/baidumapapi_util_v4_2_1.jar')
+    compile files('libs/locSDK_6.13.jar')
 }

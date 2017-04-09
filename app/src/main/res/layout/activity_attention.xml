@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
             android:padding="10dp"
-            android:src="@drawable/ic_clip_back_white" />
+            android:src="@drawable/ic_back_home" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -27,23 +27,102 @@
             android:paddingLeft="10dp"
             android:text="关注主播"
             android:textColor="@color/white"
-            android:textSize="30sp" />
+            android:textSize="20sp" />
     </LinearLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center">
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:gravity="center">-->
 
-        <TextView
-            android:layout_width="match_parent"
+        <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:drawablePadding="10dp"-->
+            <!--android:drawableTop="@drawable/ic_load_empty"-->
+            <!--android:gravity="center"-->
+            <!--android:text="啥玩意儿也没有"-->
+            <!--android:textColor="@color/black_80"-->
+            <!--android:textSize="20sp" />-->
+    <!--</RelativeLayout>-->
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_map1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawablePadding="10dp"
-            android:drawableTop="@drawable/ic_load_empty"
-            android:gravity="center"
-            android:text="啥玩意儿也没有"
-            android:textColor="@color/black_80"
-            android:textSize="20sp" />
-    </RelativeLayout>
+            android:text="加图层" />
+
+        <Button
+            android:id="@+id/btn_map2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="覆盖物" />
+
+        <Button
+            android:id="@+id/btn_map3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="几何覆盖物" />
+
+        <Button
+            android:id="@+id/btn_map4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="城市搜索" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_map5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="周边搜索" />
+
+        <Button
+            android:id="@+id/btn_map6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="查找路线" />
+
+        <Button
+            android:id="@+id/btn_map7"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="地理编码" />
+
+        <Button
+            android:id="@+id/btn_map8"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="定位" />
+
+        <Button
+            android:id="@+id/btn_map9"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="定位图层" />
+
+    </LinearLayout>
+
+    <com.baidu.mapapi.map.MapView
+        android:id="@+id/mapView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:clickable="true" />
+
 
 </LinearLayout>

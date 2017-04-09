@@ -1,4 +1,4 @@
-package gjw.bibi.activity;
+package gjw.bibi.view.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

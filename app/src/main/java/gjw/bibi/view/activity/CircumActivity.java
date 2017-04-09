@@ -1,11 +1,9 @@
-package gjw.bibi.activity;
+package gjw.bibi.view.activity;
 
 import android.content.Intent;
 import android.os.Build;
-import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -16,13 +14,13 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
-import butterknife.ButterKnife;
 import butterknife.InjectView;
 import gjw.bibi.R;
-import gjw.bibi.adapter.TopicAdapter;
+import gjw.bibi.presenter.adapter.TopicAdapter;
 import gjw.bibi.utils.ClipboardUtil;
+import gjw.bibi.view.base.BaseActivity;
 
-public class CircumActivity extends AppCompatActivity {
+public class CircumActivity extends BaseActivity {
 
     @InjectView(R.id.app_bar_layout)
     AppBarLayout appBarLayout;
@@ -35,16 +33,11 @@ public class CircumActivity extends AppCompatActivity {
     private String link;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_circum);
-        ButterKnife.inject(this);
+    protected void initListener() {
 
-        initData();
     }
 
-
-    private void initData() {
+    public void initData() {
 
         titles = getIntent().getStringExtra(TopicAdapter.CIR);
         link = getIntent().getStringExtra(TopicAdapter.CIRCUM);
@@ -86,6 +79,11 @@ public class CircumActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
+    @Override
+    public int getLayoutId() {
+        return R.layout.activity_circum;
     }
 
     @Override

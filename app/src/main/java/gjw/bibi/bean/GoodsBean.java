@@ -1,13 +1,12 @@
 package gjw.bibi.bean;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by 皇上 on 2017/3/28.
  */
 
-public class GoodsBean implements Serializable {
+public class GoodsBean {
 
     /**
      * result : {"pageNumber":1,"pageSize":6,"totalCount":7,"pageCount":2,"hasNextPage":true,"records":[{"title":"bilibili周边 魔性小电视长条抱枕 毛绒公仔90CM","skuId":83,"oldPrice":299,"vipPlusPrice":179,"salvePrice":199,"imgUrl":"http://i0.hdslb.com/bfs/travel/8bf24a1f803a439421d8101691b167e9f40b56ef.jpg"},{"title":"bilibili周边 B站经典小电视毛绒抱枕3件套 大号+小号+mini号","skuId":90,"oldPrice":257,"vipPlusPrice":179,"salvePrice":199,"imgUrl":"http://i0.hdslb.com/bfs/travel/b324578e21d5db38bfb99e1340ceba900c082ce0.jpg"},{"title":"官方授权  梦王国与沉睡的100王子马口铁徽章一套12枚","skuId":104,"oldPrice":180,"vipPlusPrice":133,"salvePrice":150,"imgUrl":"http://i0.hdslb.com/bfs/travel/4113536262e39261685109582fb9b5feaa16fc6a.jpg"},{"title":"【少量现货】在下坂本 有何贵干 现货可动手办","skuId":109,"oldPrice":450,"vipPlusPrice":350,"salvePrice":450,"imgUrl":"http://i0.hdslb.com/bfs/travel/96cf8efe67f251a550fb2dd18cb8d6f0a00283db.jpg"},{"title":"bilibili周边 哔哩哔哩2233娘便携式蓝牙音箱","skuId":139,"oldPrice":266,"vipPlusPrice":179,"salvePrice":199,"imgUrl":"http://i0.hdslb.com/bfs/travel/95c619aedefcc667e58e0a43134bdfaafff729a5.jpg"},{"title":"bilibili官方周边 哔哩哔哩机械之心移动电源便携充电宝","skuId":162,"oldPrice":233,"vipPlusPrice":179,"salvePrice":199,"imgUrl":"http://i0.hdslb.com/bfs/travel/4aafc5144c15e44c1777eb9dd295b335b9053425.jpg"}],"startIndex":0}
@@ -43,7 +42,7 @@ public class GoodsBean implements Serializable {
         this.message = message;
     }
 
-    public static class ResultBean {
+    public class ResultBean {
         /**
          * pageNumber : 1
          * pageSize : 6
@@ -118,7 +117,7 @@ public class GoodsBean implements Serializable {
             this.records = records;
         }
 
-        public static class RecordsBean {
+        public class RecordsBean {
             /**
              * title : bilibili周边 魔性小电视长条抱枕 毛绒公仔90CM
              * skuId : 83

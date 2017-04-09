@@ -1,4 +1,4 @@
-package gjw.bibi.activity;
+package gjw.bibi.view.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -16,8 +16,8 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import gjw.bibi.R;
-import gjw.bibi.adapter.TopicAdapter;
 import gjw.bibi.bean.TopicBean;
+import gjw.bibi.presenter.adapter.TopicAdapter;
 import gjw.bibi.utils.AppNetConfig;
 import okhttp3.Call;
 
